@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+
+app.controller('BlogCtrl', function($scope, $rootScope, $location,
+		BlogService) {
+	$scope.addBlog = function(blog) { // user is from view
+BlogService.addBlog(blog).then(
+		function(response)
+		{
+			alert("BlogPost is added successfully and it is waiting for approval")
+			$location.path('/home')
+		},function(response) { // error [409 ErrorClazz/ 500 ErrorClazz]
+			$scope.error = response.data
+			if(response.status==401)
+				$location.path('/login')
+			
+
+		})
+	
+}
+	if($rootScope.loggedInUser.role=='ADMIN'){
+		
+		BlogService.getBlogsWaitingForApproval()
+		.then(
+				function(response)
+				{
+					$scope.blogsWaitingForApproval=response.data
+				},function(response){
+					$rootScope.error=response.data
+					if(response.status==401)
+				$location.path('/login')
+				})
+	}
+	
+	BlogService.getBlogsApproved().then(function(response){
+		$scope.blogsApproved=response.data
+	}, function(response){
+		
+	$rootScope.error=response.data
+	if(response.status==401)
+	$location.path('/login')
+	})
+	})		
+	
