@@ -9,10 +9,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
@@ -21,15 +24,27 @@ import com.niit.model.Job;
 import com.niit.model.Notification;
 import com.niit.model.User;
 
+//import com.niit.model.BlogComment;
+//import com.niit.model.BlogPost;
+//import com.niit.model.BlogPostLikes;
+//import com.niit.model.Job;
+//import com.niit.model.Notification;
+//import com.niit.model.User;
+
 @Configuration
+@EnableWebMvc 
 @EnableTransactionManagement
-@ComponentScan("com.niit.configuration")
+//@ComponentScan("com.niit.configuration")
+
+@ComponentScan(basePackages ={ "com.niit.configuration" }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class)})
+
+
 public class DBConfiguartion {
   public DBConfiguartion(){
 	 System.out.println("DBConfiguration class is instantiated"); 
   }
   @Autowired
-  @Bean
+  @Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory() {
 		LocalSessionFactoryBuilder lsf=new LocalSessionFactoryBuilder(getDataSource());
 		Properties hibernateProperties=new Properties();
@@ -41,7 +56,7 @@ public class DBConfiguartion {
 	    return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
   @Autowired
-	@Bean
+	@Bean(name="dataSource")
 	public DataSource getDataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
 	    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");

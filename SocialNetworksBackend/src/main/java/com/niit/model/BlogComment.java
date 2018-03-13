@@ -3,13 +3,18 @@ package com.niit.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="Blogcomment")
 public class BlogComment {
+	@Id
 	private int id;
+	@Transient
 	private BlogPost blogPost;
+	@Transient
 	private User CommentBy;
 	private String CommentTxt;
 	private Date CommentedOn;

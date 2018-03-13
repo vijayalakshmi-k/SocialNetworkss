@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.model.User;
 
-@Repository
+@Repository("userDao")
 @Transactional
 public class UserDaoimpl implements UserDao {
 	@Autowired
@@ -22,6 +22,7 @@ public class UserDaoimpl implements UserDao {
 
 		public boolean registerUser(User user) {                         //void
 		System.out.println("registerUser in Dao" + user);
+		
 		Session session = sessionFactory.getCurrentSession();
 		session.save(user);
 		// inser into the front controller fn,ln ,emai ,password

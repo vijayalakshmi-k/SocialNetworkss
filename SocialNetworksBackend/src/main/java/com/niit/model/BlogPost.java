@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "blogpost_s180250")
@@ -23,6 +24,7 @@ public class BlogPost {
 	private String blogTitle;
 	@Lob
 	private String blogContent;
+	@Transient
     private User postedBy;
 	public User getPostedBy() {
 		return postedBy;

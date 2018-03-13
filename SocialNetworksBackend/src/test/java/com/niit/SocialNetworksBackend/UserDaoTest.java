@@ -20,7 +20,7 @@ public class UserDaoTest {
 	public static void initialize() {
 		AnnotationConfigApplicationContext annotationConfigAppContext=new AnnotationConfigApplicationContext(DBConfiguartion.class);
 		annotationConfigAppContext.scan("com.niit");
-		annotationConfigAppContext.refresh();
+//		annotationConfigAppContext.refresh();
 		userDao=(UserDao)annotationConfigAppContext.getBean(UserDao.class);
 	 }
 	
@@ -31,10 +31,12 @@ public class UserDaoTest {
 		//user.setUserId(2);
 		user.setFirstname("viji");
 		user.setLastname("k");
+		
 		user.setOnline(false);
 		user.setEmails("viji@xyz.com");
 		user.setPassword("123");
-		user.setPhonenumber("123456");
+		user.setPhonenumber
+		("123456");
 		user.setRole("user");
 		System.out.println("create user:"+user);
 		assertTrue("problem in creating user",userDao.registerUser(user));

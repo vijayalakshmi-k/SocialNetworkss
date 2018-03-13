@@ -1,7 +1,9 @@
 package com.niit.model;
 
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 public class BlogPostLikes {
+	@Id
 	private int id;
 	@ManyToOne
 	private BlogPost blogPost;
