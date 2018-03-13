@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.niit.model.ErrorClazz;
 import com.niit.model.User;
 
 @Controller
+@CrossOrigin(value="http://localhost:8091")
 public class UserController {
 	@Autowired
 	private UserDao userDao;
@@ -29,7 +31,9 @@ public class UserController {
 		//check for duplicate email
 		//if email is not unique return Errorclazz object
 		//if email is unique then call registerUser method
-		System.out.println("registerUser in UserController" + user);          //automattically calls from tostring method in user class
+		System.out.println("registerUser in UserController:" + user);          //automattically calls from tostring method in user class
+		System.out.println("email:"+user.getEmails());
+		
 		if(!userDao.isEmailUnique(user.getEmails()))
 		{
 			ErrorClazz error=new ErrorClazz(1,"Email is already exist please enter new different email address");

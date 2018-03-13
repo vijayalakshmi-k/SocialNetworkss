@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.Dao.BlogPostDao;
+import com.niit.Dao.BlogPostLikesDao;
 import com.niit.model.BlogPost;
 import com.niit.model.BlogPostLikes;
 import com.niit.model.ErrorClazz;
@@ -18,7 +19,7 @@ import com.niit.model.ErrorClazz;
 @Controller
 public class BlogPostLikesController {
 @Autowired
-private BlogPostLikes blogPostLikesDao;
+private BlogPostLikesDao blogPostLikesDao;
 @RequestMapping(value="/hasUserLikedblog/{blogId}",method=RequestMethod.GET)
 public ResponseEntity<?> hasUserLikedBlog(@PathVariable int blogId,HttpSession session)
 {
@@ -42,8 +43,8 @@ public ResponseEntity<?> updateLikes(@PathVariable int id,HttpSession session)
 		return new ResponseEntity<ErrorClazz>(error ,HttpStatus.UNAUTHORIZED);
 }
 	//blogpost object with updated value
-	BlogPost blogPost=blogPostLikesDao.updateLikes(id,email);
-	return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
+	BlogPostLikes blogPostLikes=blogPostLikesDao.updateLikes(id,email);
+	return new ResponseEntity<BlogPostLikes>(blogPostLikes,HttpStatus.OK);
 
 	
 	
