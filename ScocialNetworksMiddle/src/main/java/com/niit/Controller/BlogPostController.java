@@ -21,12 +21,6 @@ import com.niit.model.BlogPost;
 import com.niit.model.ErrorClazz;
 import com.niit.model.User;
 
-//import com.niit.Dao.BlogPostDao;
-//import com.niit.Dao.UserDao;
-//import com.niit.model.BlogComment;
-//import com.niit.model.BlogPost;
-//import com.niit.model.ErrorClazz;
-//import com.niit.model.User;
 
 @Controller
 public class BlogPostController {
