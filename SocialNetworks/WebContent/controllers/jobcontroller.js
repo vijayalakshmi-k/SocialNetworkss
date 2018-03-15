@@ -2,7 +2,7 @@
  * JobController
  */
 
-app.controller('JobCtrl', function($scope, $rootScope, $location, JobServices) {
+    app.controller('JobCtrl', function($scope, $rootScope, $location, JobServices) {
 	var id=$routeParams.id
 	//call this function from jobform.html
 	$Scope.addJob = function(job) {

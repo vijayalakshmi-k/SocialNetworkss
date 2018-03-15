@@ -6,14 +6,12 @@ app.factory('JobService', function($http) {
 
 	jobService.addJob = function(job) {
 
-		return $http.post("http://localhost:8091/ScocialNetworksMiddle/addjob",
-				job)
+		return $http.post("http://localhost:8091/ScocialNetworksMiddle/addjob",job)
 	}
 
 	jobService.getAllJobs = function() {
 
-		return $http
-				.post("http://localhost:8091/ScocialNetworksMiddle/alljobs")
+		return $http.post("http://localhost:8091/ScocialNetworksMiddle/alljobs")
 	}
 	
 	

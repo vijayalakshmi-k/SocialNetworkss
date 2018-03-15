@@ -98,6 +98,9 @@ app.controller('BlogDetailsCtrl', function($scope, $rootScope, $location,
 			if (response.status == 401)
 				$location.path('/login')
 		})
+		$scope.onShowComments=function(){
+			$scope.showComments=!$scope.showComments;
+		}
 
 	}
 	getBlogComments(id)

@@ -15,33 +15,31 @@ userService.registerUser=function(user) // get user all the details from the
 	return $http.post("http://localhost:9080/ScocialNetworksMiddle/registeruser",user)    //http://localhost:9080/ScocialNetworksMiddle/
 	}
 
-userService.login=function(user)
-{
+  userService.login=function(user)
+ {
+	alert('entering userservice loggeinfunction user')
 	console.log('in userservice')
 	console.log(user)
-	return $http.post("htt://localhost:9080/ScocialNetworksMiddle/login",user)
+	return $http.post("http://localhost:9080/ScocialNetworksMiddle/login",user)
 
 }
 userService.logout=function()
 {
 	
-return $http.put("http://localhost:8091/SocialNetworksMiddle/logout")
+return $http.put("http://localhost:9080/ScocialNetworksMiddle/logout")
 }
-userService.getUser=function()
-{
-	return $http.get("http://localhost:8091/SocialNetworksMiddle/getUser")
+  userService.getUser=function()
+ {
+	return $http.get("http://localhost:9080/ScocialNetworksMiddle/getUser")
 	
-}
+ }
 
-userService.updateUser=function(user)
-{
-	return $http.put("http://localhost:8091/SocialNetworksMiddle/updateUser",user)
+ userService.updateUser=function(user)
+ {
+	return $http.put("http://localhost:9080/ScocialNetworksMiddle/updateUser",user)
 	
-}
+ }
 
-
-
-
-  return userService;
+ return userService;
 })
 

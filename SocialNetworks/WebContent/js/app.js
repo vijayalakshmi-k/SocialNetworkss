@@ -13,7 +13,7 @@ app.config(function($routeProvider) {
 
 	.when('/login', {
 		templateUrl : 'views/login.html',
-		controller : 'UserController'
+		controller : 'UserController'    //$scope
 	})
 
 	.when('/edituserprofile', {
@@ -78,12 +78,20 @@ app.config(function($routeProvider) {
 	templateUrl : 'views/home.html',		
 	controller :'NotificationCtrl' , //single blogpost object ,queries getblog(),updateblog ,add comment
 	 })
+    
+	 .when('/uploadprofilepic', {
+	templateUrl : 'views/uploadprofilepic.html'		
+	 })
+	 
+	 
+	 
+	 	 .when('/suggestedusers', {
+	templateUrl : 'views/suggesteduser.html',	
+		controller:FriendCtrl
+	 })
 
 
-	 
-	 
-	 
-	 .otherwise({
+    .otherwise({
 		templateUrl : '/views/home.html',
 	     controller:'NotificationCtrl',
 	 })
@@ -94,11 +102,11 @@ app.config(function($routeProvider) {
 app.run(function($location, $rootScope, $cookieStore, UserService) {
 	if ($rootScope.loggedInUser == undefined)
 		$rootScope.loogedInUser = $cookieStore.get('currentuser')
-	$rootScope.logout = function() {
-
+	  $rootScope.logout = function() {
+           console.log('entering logout')
 		UserService.logout().then( // usersevive calling the logout function
 
-		function(response) {
+		 function(response) {
 			delete $rootScope.loggedInUser;
 			$cookieStore.remove('currentuser')
 			$rootScope.message = "successfully loggedout..."

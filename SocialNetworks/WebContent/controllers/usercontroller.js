@@ -23,18 +23,19 @@ app.controller('UserController', function($scope, $rootScope, $location,
 
 	}
 
-	$scope.login = function(user) {
-		// console.log('UserController ->login')
-		// consloe.log(user);
-		UserService.login(user).then(function(response) {
+	    $scope.login = function(user) {
+		console.log('UserController ->login')
+		//console.log('login successfully')
+	     console.log(user);
+	   UserService.login(user)
+		.then(function(response) {
 			$rootScope.loggedInUser = response.data // user object
 			$cookieStore.put('currentuser', response.data)
-			// console.log('success')
-			// console.log(response.data)
+			//console.log('success')
+			//console.log(response.data)
 			$location.path('/home')
 		}, function(response) {
-
-			// console.log('error')
+           // console.log('error')
 			$scope.error = response.data
 			$location.path('/login')
 		})
@@ -43,10 +44,9 @@ app.controller('UserController', function($scope, $rootScope, $location,
 	//statement which will executed automatically when controller gets loaded
 	//Controller to view 
 	
-	if($rootScope.loggedInUser!=undefined){
-		
-		UserService.getUser().then(
-		function(response){
+	    if($rootScope.loggedInUser!=undefined){
+		 UserService.getUser().then(
+		   function(response){
 			$scope.userdetails=response.data //result of the query :select *from where=?
 			},
 			function(response){
@@ -60,7 +60,8 @@ app.controller('UserController', function($scope, $rootScope, $location,
 	//view to Controller
 	$scope.updateUser=function(user)
 	{
-		UserService.updateUser(user).then(function(response)
+		UserService.updateUser(user)
+		.then(function(response)
 		{
 			alert('update user profile successfully...,')
 			$scope.loggedInUser=response.data

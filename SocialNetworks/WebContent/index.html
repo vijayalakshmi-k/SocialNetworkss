@@ -35,24 +35,35 @@ type="text/javascript"></script>
                 <ul class="nav navbar-nav ">
            
            <li><a href="#/register">Sign Up</a></li>
-           <li><a href="#/login" ng-show="loggedInUser.firstname==undefined">Sign In</a></li>
-           <li><a href="#/edituserprofile" ng-show="loggedInUser.firstname==undefined">Edit User Profile</a></li>
+           <li><a href="#/login">Sign In</a></li>
+           <li><a href="#/edituserprofile">Edit User Profile</a></li>
            
            
            <li class="dropdown"><a href="" class="dropdown-toggle"
-        data-toggle="dropdown" ng-show="loggedInUser.firstname==undefined">Job<b class="caret"></b></a>
+        data-toggle="dropdown" >Job<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="#/addjob" ng-show="loggedInUser.role='ADMIN'">Add Job</a></li>
                 <li><a href="#/alljobs">Get All Jobs</a></li>        
             </ul></li>
             
             <li class="dropdown"><a href="" class="dropdown-toggle"
-        data-toggle="dropdown" ng-show="loggedInUser.firstname==undefined">Blog<b class="caret"></b></a>
+        data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Blog<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="#/addblog" >Add Blog</a></li>    
                 <li><a href="#/blogsnotapproved" ng-show="loggedInUser.role=='ADMIN'">Blogs waiting for approval</a></li>
                 <li><a href="#/blogsapproved">Blogs</a></li>    
             </ul></li>
+            
+                        <li class="dropdown"><a href="" class="dropdown-toggle"
+        data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Friend<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#/suggestedusers">Suggested User</a></li>    
+                   
+            </ul></li>
+            
+            
+            
+            
            
            <li class="dropdown" >
      <a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show=="loggedInUser.firstname"> 
@@ -69,11 +80,14 @@ type="text/javascript"></script>
    </span>
    </ul>
 </li>
+
+
+
+
+           <li><a href="#" ng-show="loggedInUser.firstname!=undefined">Hi {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
+           <li><a href="#" ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">logout</a></li>
            
            
-           <li><a href="#" ng-show="loggedInUser.firstname==undefined">Welcome
-            {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
-           <li><a href="" ng-click="logout()" ng-show="loggedInUser.firstname==undefined">logout</a></li>
 </ul>
 
 </div>
