@@ -48,7 +48,7 @@ public class UserDaoimpl implements UserDao {
 	{
 		Session session = sessionFactory.getCurrentSession();
 		// parameter position are // 0(string) 1(User)
-		Query query = (Query) session.createQuery("from user where email=? and password=?");
+		Query query = (Query) session.createQuery("from User where emails=? and password=?");
 		query.setString(0, user.getEmails());
 		query.setString(1, user.getPassword());
 		return (User) query.uniqueResult(); // 1 object or null value

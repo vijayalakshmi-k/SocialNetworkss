@@ -22,14 +22,9 @@ import com.niit.model.BlogPost;
 import com.niit.model.BlogPostLikes;
 import com.niit.model.Job;
 import com.niit.model.Notification;
+import com.niit.model.ProfilePicture;
 import com.niit.model.User;
 
-//import com.niit.model.BlogComment;
-//import com.niit.model.BlogPost;
-//import com.niit.model.BlogPostLikes;
-//import com.niit.model.Job;
-//import com.niit.model.Notification;
-//import com.niit.model.User;
 
 @Configuration
 @EnableWebMvc 
@@ -39,7 +34,8 @@ import com.niit.model.User;
 @ComponentScan(basePackages ={ "com.niit.configuration" }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class)})
 
 
-public class DBConfiguartion {
+   public class DBConfiguartion 
+   {
   public DBConfiguartion(){
 	 System.out.println("DBConfiguration class is instantiated"); 
   }
@@ -52,10 +48,10 @@ public class DBConfiguartion {
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[]=new Class[]{User.class,Job.class,BlogPost.class,Notification.class,BlogPostLikes.class,BlogComment.class};//class objects of all entities
+		Class classes[]=new Class[]{User.class,Job.class,BlogPost.class,Notification.class,BlogPostLikes.class,BlogComment.class,ProfilePicture.class};//class objects of all entities
 	    return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
-  @Autowired
+    @Autowired
 	@Bean(name="dataSource")
 	public DataSource getDataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
@@ -71,7 +67,7 @@ public class DBConfiguartion {
 	public UserDaoimpl getUserDaoimpl(SessionFactory sessionFactory) {
 		return UserDaoimpl.getUserDaoimpl();
 	} */
-  @Autowired
+    @Autowired
 	@Bean
 	public HibernateTransactionManager hibTransManagement(){
 		return new HibernateTransactionManager(getSessionFactory());
