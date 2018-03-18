@@ -1,26 +1,30 @@
 /**
- * getblog/761
+ * #/getblog/761
  */
-app.controller('BlogDetailsCtrl', function($scope, $rootScope, $location,
-		$routeParam) {
+app.controller('BlogDetailsCtrl', function($scope, $rootScope, $location,BlogService,$sce,
+		$routeParams) {
 	var id = $routeParams.id;
+	$scope.rejectionTxt=false;
+	$scope.showComments=false;
 
-	BlogService.getBlog(id).then(function(response) {
-		s
+	BlogService.getBlog(id)
+	.then(function(response) {
+		console.log(response.data)
 		$scope.blog = response.data
 		$scope.content = $sce.trustAsHtml($scope.blog.blogContent)
-	}, function(response) {
-
+	}, function(response) 
+	{
 		$rootScope.error = response.data
 		if (response.status == 401)
 			$location.path('/login')
 	})
 
-	BlogService.hasUserLikedBlog(id).then(function(response) {
+	BlogService.hasUserLikedBlog(id).
+	then(function(response) {
 		// response.data wii be either null or an object of type
 		// BlogPostLikes
-		if (response.data == '')
-			$scope.isLiked = false
+		if (response.data == '')    //blogs is not yet liked
+			$scope.isLiked = false  //determine the color of the glyphicon
 		else
 			$scope.isLiked = true
 
@@ -70,16 +74,15 @@ app.controller('BlogDetailsCtrl', function($scope, $rootScope, $location,
 		})
 	}
 
-	$scope.addComment = function(id, commentTxt) {
+	$scope.addComment = function(blog,commentTxt) {
 		$scope.blogComment = {}
 		// blogcomment.setBlogPost(blogpost) in middleware
 		$scope.blogComment.blogPost = blog;
-
-		// blogcomment.setBlogcomment(blogcomment) in middleware
+        // blogcomment.setBlogcomment(blogcomment) in middleware
 		$scope.blogComment.commentTxt = commentTxt;
 		BlogService.addComment($scope.blogComment).then(function(response) {
-			$scope.blogComment = response.data
 			$scope.commentTxt = ''
+			getBlogComments(id)
 		}, function(response) {
 			$rootScope.error = response.data
 			if (response.status == 401)

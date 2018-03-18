@@ -8,21 +8,21 @@ var notificationService={}
 notificationService .getNotificationsNotViewed=function()
 {
 	
-	return $http.get("http://localhost:9080/ScocialNetworksMiddle/getnotifications")
+	return $http.get("http://localhost:8091/ScocialNetworksMiddle/getnotifications")
 
 }
 
 notificationService .getNotifications=function(id)
 {
 	
-	return $http.get("http://localhost:9080/ScocialNetworksMiddle/getnotifications/"+id)
+	return $http.get("http://localhost:8091/ScocialNetworksMiddle/getnotification/"+id)
 
 }
 
-notificationService .getNotificationsNotViewed=function()
+notificationService .updateNotification=function(id)
 {
 	
-	return $http.get("http://localhost:9080/ScocialNetworksMiddle/updatenotifications/"+id)
+	return $http.put("http://localhost:8091/ScocialNetworksMiddle/updatenotification/"+id)
 
 }
 

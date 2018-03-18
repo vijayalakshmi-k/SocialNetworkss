@@ -47,25 +47,28 @@ app.controller('UserController', function($scope, $rootScope, $location,
 	    if($rootScope.loggedInUser!=undefined){
 		 UserService.getUser().then(
 		   function(response){
-			$scope.userdetails=response.data //result of the query :select *from where=?
+			$scope.user=response.data //result of the query :select *from where=?
+			console.log('in get user:')
+			console.log($scope.user);
 			},
 			function(response){
 				if(response.status==401)
 					$location.path('/login')
-					else
-						$scope.error=response.data;
+					
 				
 			})
 		}
 	//view to Controller
 	$scope.updateUser=function(user)
 	{
+		
 		UserService.updateUser(user)
 		.then(function(response)
 		{
 			alert('update user profile successfully...,')
-			$scope.loggedInUser=response.data
+			$rootScope.loggedInUser=response.data
 			$cookieStore.put('loggedInUser',response.data)
+			$location.path('/home')
 		},function(response)		
 		{
 			if(response.status==401)
@@ -73,21 +76,10 @@ app.controller('UserController', function($scope, $rootScope, $location,
 		else
 			$scope.error=response.data;
 
-		}
-		
-		
-		)
+		})
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
 }) 
 
 

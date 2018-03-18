@@ -5,11 +5,29 @@ app.factory('FriendService',function($http) {
 					var friendService = {}
 
 					friendService.getAllSuggestedUsers = function() {
-						
-						return $http.get("http://localhost:9080/ScocialNetworksMiddle/suggestedusers")
-
+					return $http.get("http://localhost:8091/ScocialNetworksMiddle/suggestedusers")
 					}
-					return friendService;
+					
+					friendService.addFriend = function(toId) {
+					return $http.post("http://localhost:8091/ScocialNetworksMiddle/addfriend",toId)
+					}
+					
+					
+					friendService.getPendingRequests = function() {
+						return $http.get("http://localhost:8091/ScocialNetworksMiddle/pendingrequests")
+						}
+					
+					friendService.acceptRequest = function(request) {
+						return $http.put("http://localhost:8091/ScocialNetworksMiddle/acceptrequest",request)
+						}
+
+					friendService.deleteRequest = function(request) {
+						return $http.put("http://localhost:8091/ScocialNetworksMiddle/deleterequest",request)
+						}
+					
+					
+
+				return friendService;
 				}
 
 		)

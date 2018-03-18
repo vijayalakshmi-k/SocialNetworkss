@@ -2,11 +2,11 @@
  * 
  */
 app.factory('JobService', function($http) {
-	var jobServices = {}
+	var jobService = {}
 
-	jobService.addJob = function(job) {
+	jobService.addJob = function(job) {                                                       
 
-		return $http.post("http://localhost:8091/ScocialNetworksMiddle/addjob",job)
+		return $http.post("http://localhost:8091/ScocialNetworksMiddle/addjob",job)    
 	}
 
 	jobService.getAllJobs = function() {
@@ -17,11 +17,12 @@ app.factory('JobService', function($http) {
 	
 	jobService.getJob = function() {
 
-		return $http
-				.get("http://localhost:8091/ScocialNetworksMiddle/getjobs/" +id)
+		return $http.get("http://localhost:8091/ScocialNetworksMiddle/getjobs/"+id)
 	}
 
 
 
-	return jobServices;
+	return jobService;
 })
+
+

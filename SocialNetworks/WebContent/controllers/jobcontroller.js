@@ -2,13 +2,12 @@
  * JobController
  */
 
-    app.controller('JobCtrl', function($scope, $rootScope, $location, JobServices) {
+    app.controller('JobCtrl', function($scope, $rootScope, $location, JobService,$routeParams) {
 	var id=$routeParams.id
 	//call this function from jobform.html
-	$Scope.addJob = function(job) {
+	$scope.addJob = function(job) {
 		JobService.addJob(job).then(function(response) {
 			alert('Job details posted successfully..')
-			
 			$location.path('/alljobs')
 		}, function(response) {
 			// 3 return statement for error
@@ -19,7 +18,7 @@
 		})
 
 		JobService.getAllJobs().then(function(response) {
-			$scope.jobss = response.data
+			$scope.job = response.data
 		}, function(response) {
 			$rootScope.error = response.data
 			if (response.status == 401) // not logged in
@@ -28,7 +27,7 @@
 		
 		
 		JobService.getJob().then(function(response) {
-			$scope.jobss = response.data
+			$scope.job = response.data
 		}, function(response) {
 			$rootScope.error = response.data
 			if (response.status == 401) // not logged in

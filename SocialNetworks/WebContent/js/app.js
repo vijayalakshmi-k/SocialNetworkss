@@ -68,7 +68,7 @@ app.config(function($routeProvider) {
 
 	      .when('/getnotification/:id', {
 	templateUrl : 'views/notificationdetails.html',		
-	controller : 'NotificationCtrl'  //single blogpost object ,queries getblog(),updateblog ,add comment
+	controller : 'NotificationCtrl'  
 	 })
 
 
@@ -76,22 +76,25 @@ app.config(function($routeProvider) {
 	 
 	 .when('/home', {
 	templateUrl : 'views/home.html',		
-	controller :'NotificationCtrl' , //single blogpost object ,queries getblog(),updateblog ,add comment
+	controller :'NotificationCtrl' , 
 	 })
     
 	 .when('/uploadprofilepic', {
 	templateUrl : 'views/uploadprofilepic.html'		
 	 })
 	 
-	 
-	 
 	 	 .when('/suggestedusers', {
-	templateUrl : 'views/suggesteduser.html',	
-		controller:FriendCtrl
+	templateUrl : 'views/suggestedusers.html',	
+		controller:'FriendCtrl'
+	 })
+
+  .when('/pendingrequests', {
+	templateUrl : 'views/pendingrequests.html',	
+		controller:'FriendCtrl'
 	 })
 
 
-    .otherwise({
+	.otherwise({
 		templateUrl : '/views/home.html',
 	     controller:'NotificationCtrl',
 	 })
@@ -101,7 +104,7 @@ app.config(function($routeProvider) {
 
 app.run(function($location, $rootScope, $cookieStore, UserService) {
 	if ($rootScope.loggedInUser == undefined)
-		$rootScope.loogedInUser = $cookieStore.get('currentuser')
+		$rootScope.loggedInUser = $cookieStore.get('currentuser')
 	  $rootScope.logout = function() {
            console.log('entering logout')
 		UserService.logout().then( // usersevive calling the logout function
