@@ -145,7 +145,7 @@ try {
 }
 return new ResponseEntity<BlogComment> (blogComment,HttpStatus.OK);
 }
-@RequestMapping(value="/blogComments/{blogPostId",method=RequestMethod.GET)
+@RequestMapping(value="/blogComments/{blogPostId}",method=RequestMethod.GET)
 public ResponseEntity<?> getAllBlogComments(@PathVariable int blogPostId,HttpSession session)
 {
 	String email = (String) session.getAttribute("loginId");

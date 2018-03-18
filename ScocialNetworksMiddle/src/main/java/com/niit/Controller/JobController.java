@@ -27,7 +27,7 @@ public class JobController {
 	@Autowired
 	private JobDao jobDao;
 	
-	@RequestMapping(value = "/addjobs", method = RequestMethod.GET)
+	@RequestMapping(value = "/addjob", method = RequestMethod.POST)
  public ResponseEntity<?> addJob(@RequestBody Job job, HttpSession session) {
 		// Authentication
 		String email = (String) session.getAttribute("loginId");
@@ -49,15 +49,15 @@ public class JobController {
 			jobDao.add(job);
 			return new ResponseEntity<Job>(job, HttpStatus.OK);
 		} catch (Exception e) {
-			ErrorClazz error = new ErrorClazz(6, "Unale to post job details..." + e.getMessage());
+			ErrorClazz error = new ErrorClazz(6, "Unable to post job details..." + e.getMessage());
 			return new ResponseEntity<ErrorClazz>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 
 		}
 
 	}
 
-	@RequestMapping(value = "/alljobs", method = RequestMethod.GET)
-	public ResponseEntity<?> getAllJos(HttpSession session) {
+	@RequestMapping(value = "/alljobs", method = RequestMethod.POST)   //GET
+	public ResponseEntity<?> getAllJobs(HttpSession session) {
 		// Authentication
 		String email = (String) session.getAttribute("loginId");
 		if (email == null) {

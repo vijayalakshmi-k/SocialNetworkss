@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +15,7 @@ import com.niit.model.ErrorClazz;
 import com.niit.model.User;
 
 @Controller
-@CrossOrigin(value = "http://localhost:8091")
+//@CrossOrigin(value = "http://localhost:8091")
 public class UserController {
 	@Autowired
 	private UserDao userDao;
@@ -114,7 +113,7 @@ public class UserController {
 		}
 		try {
 			userDao.update(user);
-			return new ResponseEntity<User>(user, HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (Exception e) {
 
 			ErrorClazz error = new ErrorClazz(5, "unable to update user details...." + e.getMessage());

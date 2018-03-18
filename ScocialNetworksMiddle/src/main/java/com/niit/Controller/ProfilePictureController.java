@@ -39,7 +39,7 @@ public class ProfilePictureController {
 	    return new ResponseEntity<ProfilePicture> (profilePicture,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/getimage/{email}",method=RequestMethod.GET)
+	@RequestMapping(value="/getimage/{email:.+}",method=RequestMethod.GET)
 	public @ResponseBody byte[] getImage(@PathVariable String email,HttpSession session)
 	{
 		String auth=(String)session.getAttribute("loginId");
